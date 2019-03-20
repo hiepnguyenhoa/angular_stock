@@ -1,22 +1,26 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-summary',
-  templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.css']
+  selector: 'summary',
+  styleUrls: ['./summary.component.css'],
+  templateUrl: './summary.component.html'
 })
-export class SummaryComponent{
-
+export class SummaryComponent {
   @Input() stock: any;
 
-  constructor() { }
+  isNegative() {
+    if (!this.stock || this.stock.change >= 0) {
+      return false;
+    }
 
-
-  isNegative(){
-    return (this.stock && this.stock.change < 0);
+    return true;
   }
 
-  isPositive(){
-    return !this.isNegative();
+  isPositive() {
+    if (!this.stock || this.stock.change <= 0) {
+      return false;
+    }
+
+    return true;
   }
 }
